@@ -1,8 +1,8 @@
 import express from 'express';
+import authMiddleware from '../middleware/authMiddleware.js';
 import { searchStocks,getStockDetails ,getStocks} from '../controllers/stocksController/stocks.js';
-import { get } from 'mongoose';
 const router = express.Router();
-router.get('/search',searchStocks);
-router.get('/getStocksDetails/:symbol',getStockDetails);
-router.get('/getStocks',getStocks);
+router.get('/search',authMiddleware,searchStocks);
+router.get('/getStocksDetails/:symbol',authMiddleware,getStockDetails);
+router.get('/getStocks',authMiddleware,getStocks);
 export default router;

@@ -5,7 +5,6 @@ const interceptor = axios.create({
 });
 
 interceptor.interceptors.request.use((config) => {
-  console.log(process.env.FINNHUB_API_KEY);
   config.params.token = process.env.FINNHUB_API_KEY;
   return config;
 });
