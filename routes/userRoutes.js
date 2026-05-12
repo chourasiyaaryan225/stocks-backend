@@ -1,0 +1,15 @@
+import express from "express";
+import { addToWatchlist, removeFromWatchlist,getUserWatchlist } from "../controllers/userController/watchListController.js";
+import { createAlert, getUserAlerts , deleteAlert} from "../controllers/userController/alertController.js";
+import { addHolding , getUserPortfolio} from "../controllers/userController/holdingController.js";
+import authMiddleware from "../middleware/authMiddleware.js";
+const router = express.Router();
+router.post('/addToWatchList',authMiddleware,addToWatchlist);
+router.delete("/removeFromWatchList",authMiddleware,removeFromWatchlist);
+router.get("/userWatchlist/:user",authMiddleware,getUserWatchlist);
+router.post("/createAlert",authMiddleware,createAlert);
+router.get("/alerts/:user",authMiddleware,getUserAlerts);
+router.delete("/deleteAlert/:id",authMiddleware,deleteAlert);
+router.post("/addHolding",authMiddleware,addHolding);
+router.get("/portfolio/:user",authMiddleware,getUserPortfolio);
+export default router;
