@@ -71,7 +71,7 @@ export const getStocks = async (req, res) => {
       },
     });
     const filteredStocks = response.data
-      ?.slice(0, 10)
+      ?.slice(0, 20)
       ?.map((stock) => ({
         currency: stock.currency,
         symbol: stock.symbol,
@@ -91,7 +91,8 @@ export const getStocks = async (req, res) => {
         }
       })
     )
-    return res.status(200).json({status: "success",message:"Stocks retrieved successfully.",data: stocksWithDetails || []});
+    const resultStocks = stocksWithDetails.filter(stock=>stock?.details?.logo !== undefined);
+    return res.status(200).json({status: "success",message:"Stocks retrieved successfully.",data: resultStocks || []});
   } catch (error) {
     logger.error(`URL: ${req.originalUrl} - ERROR: ${error}` || "Internal Server Error.");
     return res.status(500).json({status: "error",message: "Failed to retrieve stocks"});

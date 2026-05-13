@@ -1,4 +1,5 @@
 import Watchlist from "../../models/watchlistModel.js";
+import logger from "../../services/logger.js";
 export const addToWatchlist = async (req, res) => {
   try {
     const {user,symbol,companyName,companyLogo,exchange,country,currency} = req.body;
