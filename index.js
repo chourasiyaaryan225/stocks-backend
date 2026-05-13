@@ -4,4 +4,4 @@ app.use(express.json());
 app.get('/',(req,res)=>{
     res.status(200).json({message:'hello from server.'})
 })
-app.listen(3000,()=>console.log('server is listening on port 3000'));
+app.listen(3000,()=>console.log('server is listening on port 4000'));
