@@ -33,7 +33,8 @@ export const searchStocks = async (req, res) => {
         }
       })
     )
-    return res.status(200).json({status: "success",message:"Search successfully.",data: stocksWithDetails || []});
+    const resultStocks = stocksWithDetails.filter(stock=>stock?.details?.logo !== undefined);
+    return res.status(200).json({status: "success",message:"Search successfully.",data: resultStocks || []});
   } catch (error) {
     logger.error(`URL: ${req.originalUrl} - ERROR: ${error}` || "Internal Server Error.");
     return res.status(500).json({status: "error",message: "Failed to search stocks"});
